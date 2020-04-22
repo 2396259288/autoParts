@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    已购买商品
+{% endblock %}
+
+{% block main %}
+    <section class="main_section">
+        <hr>
+        <section id="user_manage">
+            <nav>
+                <p><a href="{% url 'user_index' %}">个人资料</a></p>
+                <p><a href="{% url 'user_goods' %}">已购商品</a></p>
+                <p><a href="{% url 'user_shoppingCart' %}">购物车</a></p>
+            </nav>
+            <section class="user_info">
+                <div class="user_info_wrapper">
+                    <table id="user_course_table" cellpadding="0" cellspacing="0">
+                        <tr id="user_info_course_tr_first">
+                            <th width="250px">商品名称</th>
+{#                            <th width="250px">价格</th>#}
+                            <th width="200px">地址</th>
+                            <th width="150px">联系方式</th>
+                            <th width="100px">操作</th>
+                        </tr>
+                        {% for goods in goods_s %}
+                        <tr class="user_info_course_tr">
+                            <td>{{goods.buyGoods}}</td>
+                            <td>{{goods.buyAddress}}</td>
+                            <td>{{goods.buyTel}}</td>
+                            <td><a data-toggle="modal" data-target="#myModal">删除订单</a></td>
+                        </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                            {#                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>#}
+                                        </div>
+                                        <div class="modal-body">
+                                            是否确认删除
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                                            </button>
+                                            {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                                            <a href="{% url 'user_delcode' goods.id %}">确定删除</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                        {% endfor %}
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+{% endblock %}
+

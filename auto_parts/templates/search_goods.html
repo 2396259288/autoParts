@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block main %}
+    <div class="row">
+        {% for search_goods in search_goods_s %}
+            <div class="col-md-2">
+                <a href="{% url 'autoparts_goods' search_goods.id %}" class="thumbnail">
+                    <img src="/{{ search_goods.imgName }}" alt="{{ search_goods.imgName }}">
+                </a>
+                <a href="{% url 'autoparts_goods' search_goods.id %}"><p>{{ search_goods.goodsName }}</p>
+                    <p>价格：{{ search_goods.price }}元</p></a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    品牌专区
+{% endblock %}
+{% block main %}
+    <h1>{{ logo_name }}</h1>
+    <hr>
+    {% for logo_goods in logo_goods_s %}
+        <div class="row">
+        <div class="col-md-2">
+            <a href="{% url 'autoparts_goods' logo_goods.id %}" class="thumbnail">
+                <img src="/{{logo_goods.imgName}}" alt="{{logo_goods.imgName}}">
+            </a>
+        <a href="{% url 'autoparts_goods' logo_goods.id %}"><p>{{logo_goods.goodsName}}</p><p>价格：{{ logo_goods.price }}元</p></a>
+        </div>
+        </div>
+        {% endfor %}
+{% endblock %}
